@@ -139,7 +139,7 @@ window.KasorraSeedData = {
       price: 238,
       availability: "In stock",
       specs: ["40kg per bag", "Type 1P", "Palletized loading", "Delivery within Luzon"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/cement-bags.jpg",
       mediaType: "image",
       popular: true,
     },
@@ -155,7 +155,7 @@ window.KasorraSeedData = {
       price: 142,
       availability: "Limited stock",
       specs: ["6m length", "Grade 40", "Bundle pricing", "Mill certificate available"],
-      mediaUrl: "images/wew.png", // Add product image here
+      mediaUrl: "images/products/rebar-bundles.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -171,7 +171,7 @@ window.KasorraSeedData = {
       price: 920,
       availability: "In stock",
       specs: ["4ft x 8ft", "18mm thickness", "Phenolic glue", "Bulk pallet loading"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/plywood-panels.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -187,7 +187,7 @@ window.KasorraSeedData = {
       price: 68,
       availability: "In stock",
       specs: ["60cm x 60cm", "Matte finish", "Boxed by 4 pieces", "Slip-resistant surface"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/ceramic-tiles.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -203,7 +203,7 @@ window.KasorraSeedData = {
       price: 155,
       availability: "In stock",
       specs: ["ABS shell", "Adjustable harness", "White, yellow, and blue", "Logo print option"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/safety-helmets.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -219,7 +219,7 @@ window.KasorraSeedData = {
       price: 410,
       availability: "Made to order",
       specs: ["0.4mm gauge", "Custom cut length", "Zinc-coated", "Bundled delivery"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/roofing-sheet.png",
       mediaType: "image",
       popular: false,
     },
@@ -235,7 +235,7 @@ window.KasorraSeedData = {
       price: 38,
       availability: "In stock",
       specs: ["20mm diameter", "3m length", "Flame-retardant PVC", "Couplers available"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/pvc-conduit.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -251,7 +251,7 @@ window.KasorraSeedData = {
       price: 182,
       availability: "In stock",
       specs: ["25kg bag", "Pre-blended mix", "Consistent setting time", "Hardware resale ready"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/cement-bags.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -267,7 +267,7 @@ window.KasorraSeedData = {
       price: 24,
       availability: "In stock",
       specs: ["M12 x 100mm", "Zinc-plated", "Boxed by 50", "Pull test documents on request"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/anchor-bolt.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -283,7 +283,7 @@ window.KasorraSeedData = {
       price: 520,
       availability: "In stock",
       specs: ["1.2m x 10m roll", "Foil-faced option", "Fire-retardant", "Compressed packing"],
-      mediaUrl: "images/industrial.jpg", // Add product image here
+      mediaUrl: "images/products/insulation.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -299,7 +299,7 @@ window.KasorraSeedData = {
       price: 18,
       availability: "Made to order",
       specs: ["B-flute board", "Custom die-line", "One-color print", "7-day sample lead time"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/corrugated-boxes.jpg",
       mediaType: "image",
       popular: true,
     },
@@ -315,7 +315,7 @@ window.KasorraSeedData = {
       price: 9,
       availability: "In stock",
       specs: ["250g and 500g sizes", "Food-grade liner", "Zipper seal", "Window option"],
-      mediaUrl: "images/package.png", // Add product image here
+      mediaUrl: "images/packaging.webp",
       mediaType: "image",
       popular: true,
     },
@@ -331,7 +331,7 @@ window.KasorraSeedData = {
       price: 14,
       availability: "Made to order",
       specs: ["350gsm board", "Custom dieline", "Matte lamination option", "Flat-packed delivery"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/paperboard-cartons.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -347,7 +347,7 @@ window.KasorraSeedData = {
       price: 3,
       availability: "Made to order",
       specs: ["Gloss or matte", "Waterproof adhesive", "Custom die cut", "CMYK print"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/product-labels.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -363,7 +363,7 @@ window.KasorraSeedData = {
       price: 12,
       availability: "In stock",
       specs: ["12 x 16 inch", "Self-seal strip", "Opaque finish", "Custom print available"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/packaging.webp",
       mediaType: "image",
       popular: false,
     },
@@ -379,7 +379,7 @@ window.KasorraSeedData = {
       price: 22,
       availability: "In stock",
       specs: ["250ml capacity", "Metal lug cap", "Food-safe glass", "Tray-packed"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/glass-jar.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -395,7 +395,7 @@ window.KasorraSeedData = {
       price: 7,
       availability: "In stock",
       specs: ["Sugarcane pulp", "Three-compartment option", "Microwave-safe", "Carton packed"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/pulp-tray.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -411,7 +411,7 @@ window.KasorraSeedData = {
       price: 31,
       availability: "Made to order",
       specs: ["Foil bubble liner", "Custom box fit", "Cold-chain use", "Flat-packed"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/corrugated-boxes.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -427,7 +427,7 @@ window.KasorraSeedData = {
       price: 42,
       availability: "In stock",
       specs: ["48mm x 100m", "Acrylic adhesive", "Clear or brown", "Logo print option"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/products/corrugated-boxes.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -443,7 +443,7 @@ window.KasorraSeedData = {
       price: 5,
       availability: "In stock",
       specs: ["Nylon PE film", "Multiple sizes", "Freezer-safe", "Heat-seal compatible"],
-      mediaUrl: "images/packaging.webp", // Add product image here
+      mediaUrl: "images/packaging.webp",
       mediaType: "image",
       popular: false,
     },
@@ -459,7 +459,7 @@ window.KasorraSeedData = {
       price: 185,
       availability: "In stock",
       specs: ["25kg sack", "Organic farm source", "Food safety documents", "Amber granules"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/coconut-sugar.jpg",
       mediaType: "image",
       popular: true,
     },
@@ -475,7 +475,7 @@ window.KasorraSeedData = {
       price: 72,
       availability: "In stock",
       specs: ["20kg bag", "Fine mesh", "Batch COA available", "Wholesale pallet rates"],
-      mediaUrl: "images/rice.jpg", // Add product image here
+      mediaUrl: "images/products/rice-flour.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -491,7 +491,7 @@ window.KasorraSeedData = {
       price: 156,
       availability: "In stock",
       specs: ["25kg bag", "Fine grade", "Low moisture", "Food safety documents"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/coconut.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -507,7 +507,7 @@ window.KasorraSeedData = {
       price: 198,
       availability: "Limited stock",
       specs: ["2kg packs", "Halal option", "Cold-chain delivery", "COA on request"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/chicken-fillet.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -523,7 +523,7 @@ window.KasorraSeedData = {
       price: 1480,
       availability: "Made to order",
       specs: ["200kg drum", "Aseptic packed", "No added sugar", "Batch traceability"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/banana-puree.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -539,7 +539,7 @@ window.KasorraSeedData = {
       price: 690,
       availability: "In stock",
       specs: ["25kg pail", "Food-grade", "Dark syrup", "Brix documented"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/molasses.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -555,7 +555,7 @@ window.KasorraSeedData = {
       price: 64,
       availability: "In stock",
       specs: ["25kg sack", "Fine powder", "Neutral flavor", "Food processor ready"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/corn-starch.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -571,7 +571,7 @@ window.KasorraSeedData = {
       price: 420,
       availability: "In stock",
       specs: ["10kg carton", "6mm dice", "Low moisture", "Private label ready"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/dried-mango.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -587,7 +587,7 @@ window.KasorraSeedData = {
       price: 275,
       availability: "In stock",
       specs: ["20kg bag", "High fat content", "Dairy-free", "Batch COA available"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/coconut-milk-powder.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -603,7 +603,7 @@ window.KasorraSeedData = {
       price: 310,
       availability: "Made to order",
       specs: ["20L pail", "Shelf-stable", "Custom flavor adjustment", "Food service pack"],
-      mediaUrl: "images/foo.webp", // Add product image here
+      mediaUrl: "images/products/marinade.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -619,7 +619,7 @@ window.KasorraSeedData = {
       price: 2850,
       availability: "In stock",
       specs: ["Mini-ITX", "I/O shield included", "Warranty tested", "Bulk serial tracking"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/motherboards.avif",
       mediaType: "image",
       popular: true,
     },
@@ -635,7 +635,7 @@ window.KasorraSeedData = {
       price: 46,
       availability: "In stock",
       specs: ["IP67 rated", "3-pin and 4-pin variants", "Bulk trays", "Datasheet included"],
-      mediaUrl: "images/electronics.jpg", // Add product image here
+      mediaUrl: "images/products/circuit-board.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -651,7 +651,7 @@ window.KasorraSeedData = {
       price: 138,
       availability: "In stock",
       specs: ["-40C to 125C", "Digital output", "Cable assembly option", "Datasheet included"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/proximity-sensor.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -667,7 +667,7 @@ window.KasorraSeedData = {
       price: 84,
       availability: "In stock",
       specs: ["5A output", "Adjustable voltage", "Bulk anti-static trays", "QC tested"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/buck-converter.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -683,7 +683,7 @@ window.KasorraSeedData = {
       price: 96,
       availability: "In stock",
       specs: ["0.96 inch", "I2C interface", "Blue or white pixel", "ESD packed"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/tft-display.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -699,7 +699,7 @@ window.KasorraSeedData = {
       price: 18,
       availability: "In stock",
       specs: ["Type-C female", "Board-mount", "Packed by 100", "Repair-grade inventory"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/usb-c-socket.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -715,7 +715,7 @@ window.KasorraSeedData = {
       price: 1240,
       availability: "Limited stock",
       specs: ["DIN rail option", "GPIO breakout", "Dual power input", "Warranty tested"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/raspberry-pi-board.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -731,7 +731,7 @@ window.KasorraSeedData = {
       price: 175,
       availability: "In stock",
       specs: ["3S and 4S variants", "Overcurrent protection", "Anti-static packaging", "Datasheet included"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/bms-board.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -747,7 +747,7 @@ window.KasorraSeedData = {
       price: 210,
       availability: "In stock",
       specs: ["NPN output", "12V to 24V", "M12 housing", "Cable included"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/proximity-sensor.jpg",
       mediaType: "image",
       popular: false,
     },
@@ -763,7 +763,7 @@ window.KasorraSeedData = {
       price: 340,
       availability: "Made to order",
       specs: ["320x240 resolution", "SPI interface", "Touch option", "Protective tray packing"],
-      mediaUrl: "images/motherboards.avif", // Add product image here
+      mediaUrl: "images/products/tft-display.jpg",
       mediaType: "image",
       popular: false,
     },
