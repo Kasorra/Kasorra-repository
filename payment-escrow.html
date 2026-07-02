@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Kasorra Payment and Escrow</title>
+</head>
+<body>
+    <header class="utility-header">
+        <a href="index.html" class="nav-all">Home</a>
+        <nav class="utility-nav" aria-label="Payment navigation">
+            <a href="cart-page.html">Cart</a>
+            <a href="index.html#marketplace-app">Categories</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main class="checkout-page">
+        <section class="dashboard-hero">
+            <p class="section-eyebrow">Payment and escrow</p>
+            <h1>Escrow checkout review</h1>
+            <p>Confirm cart totals, supplier terms, and payment readiness before sending funds.</p>
+        </section>
+
+        <section class="checkout-grid">
+            <article class="dashboard-card">
+                <h2>Escrow status</h2>
+                <p>Payment is held until the buyer confirms delivery terms and supplier fulfillment milestones.</p>
+                <button type="button" class="primary-action" id="confirmEscrow">Confirm escrow review</button>
+            </article>
+            <article class="dashboard-card" id="checkoutCartSummary" aria-live="polite"></article>
+        </section>
+    </main>
+
+    <script src="scripts/marketplace-data.js"></script>
+    <script src="scripts/payment-escrow.js"></script>
+</body>
+</html>

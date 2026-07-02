@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="/_vercel/insights/script.js"></script>
-    <title>Kasorra.com | Verified Suppliers, Reliable Connections</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Kasorra Cart</title>
 </head>
 <body>
-    <section class="header-section">
+    <header class="utility-header">
+        <a href="index.html" class="nav-all">Home</a>
+        <nav class="utility-nav" aria-label="Cart navigation">
+            <a href="index.html#marketplace-app">Categories</a>
+            <a href="index.html?supplier=techsource-pro#supplierProfile">Company Profile</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
 
-    </section>
+    <main class="cart-page">
+        <section class="module-heading">
+            <div>
+                <p class="section-eyebrow">Buyer cart</p>
+                <h1>Selected products</h1>
+            </div>
+            <a href="index.html#marketplace-app" class="secondary-action">Continue sourcing</a>
+        </section>
+
+        <section class="cart-layout">
+            <div class="cart-list" id="cartItems" aria-live="polite"></div>
+            <aside class="cart-summary" id="cartSummary"></aside>
+        </section>
+    </main>
+
+    <script src="scripts/marketplace-data.js"></script>
+    <script src="scripts/cart.js"></script>
 </body>
 </html>

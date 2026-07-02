@@ -1,3 +1,29 @@
+const KASORRA_AUTH_KEYS = {
+    currentUser: "kasorra.currentUser",
+    registeredUsers: "kasorra.users",
+};
+
+const KASORRA_DEMO_USERS = [
+    {
+        id: "buyer-demo",
+        email: "buyer@kasorra.com",
+        username: "buyer",
+        password: "BuyerPass123",
+        role: "buyer",
+        businessName: "Demo Buyer Company",
+    },
+    {
+        id: "supplier-demo",
+        email: "supplier@kasorra.com",
+        username: "supplier",
+        password: "SupplierPass123",
+        role: "supplier",
+        businessName: "Demo Supplier Company",
+    },
+];
+
+document.addEventListener("DOMContentLoaded", updateAccountButton);
+
 function acc_button() {
     if (document.querySelector(".acc_bg")) {
         return;
@@ -131,26 +157,164 @@ function acc_button() {
     document.body.classList.add("no-scroll");
 }
 
-function handle_login(event) { 
+/** Validates the sign-in form against the backend API when available, then local demo users. */
+async function handle_login(event) {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value;
+    const email = form.email.value.trim();
     const password = form.password.value;
+    const submit = form.querySelector(".submit_button");
 
-    if (email.trim() === "" || password.trim() === "") {
-        let error_container = form.querySelector(".error_container") || document.createElement('div');
-        error_container.className = "error_container";
-
-        let error_message = document.createElement('p');
-        error_message.textContent = "Please Fill in all the fields."
-        error_container.innerHTML = "";
-        error_container.appendChild(error_message);
-        form.appendChild(error_container);
+    if (email === "" || password.trim() === "") {
+        showLoginError(form, "Please fill in all the fields.");
         return;
     }
 
-    // Here you’d send data to backend/database
-    console.log("Sending:", { email, password });
+    setLoginLoading(submit, true);
+
+    try {
+        const result = await validateCredentials(email, password);
+        if (!result.success) {
+            showLoginError(form, result.message || "Incorrect email, username, or password.");
+            return;
+        }
+
+        localStorage.setItem(KASORRA_AUTH_KEYS.currentUser, JSON.stringify({
+            id: result.user.id,
+            email: result.user.email,
+            username: result.user.username || result.user.email,
+            role: result.user.role,
+            businessName: result.user.businessName || result.user.business_name || "Kasorra User",
+            token: result.token || null,
+            loggedInAt: new Date().toISOString(),
+        }));
+
+        updateAccountButton();
+        close_overlay();
+        window.location.href = "dashboard.html";
+    } catch (error) {
+        showLoginError(form, "Login is temporarily unavailable. Please try again.");
+    } finally {
+        setLoginLoading(submit, false);
+    }
+}
+
+/** Checks credentials through the API and falls back to seeded browser users for static demos. */
+async function validateCredentials(identifier, password) {
+    const apiResult = await attemptApiLogin(identifier, password);
+    if (apiResult.status === "success" || apiResult.status === "invalid") {
+        return apiResult;
+    }
+
+    const normalized = identifier.toLowerCase();
+    const user = getKnownUsers().find((candidate) => {
+        return [candidate.email, candidate.username]
+            .filter(Boolean)
+            .map((value) => value.toLowerCase())
+            .includes(normalized);
+    });
+
+    if (!user || user.password !== password) {
+        return { success: false, message: "Incorrect email, username, or password." };
+    }
+
+    return {
+        success: true,
+        user: {
+            id: user.id,
+            email: user.email,
+            username: user.username,
+            role: user.role,
+            businessName: user.businessName,
+        },
+    };
+}
+
+/** Attempts backend credential validation without blocking static-page demos when the API is absent. */
+async function attemptApiLogin(identifier, password) {
+    try {
+        const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: identifier, password }),
+        });
+
+        if (response.status === 404 || response.status === 405) {
+            return { status: "unavailable" };
+        }
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+            return {
+                status: response.status === 400 || response.status === 401 ? "invalid" : "unavailable",
+                success: false,
+                message: data.message || data.error || "Incorrect email, username, or password.",
+            };
+        }
+
+        return {
+            status: "success",
+            success: true,
+            token: data.token || data.session?.access_token || null,
+            user: data.user,
+        };
+    } catch (error) {
+        return { status: "unavailable" };
+    }
+}
+
+/** Returns seeded demo users plus browser-created users when present. */
+function getKnownUsers() {
+    try {
+        const stored = JSON.parse(localStorage.getItem(KASORRA_AUTH_KEYS.registeredUsers));
+        return KASORRA_DEMO_USERS.concat(Array.isArray(stored) ? stored : []);
+    } catch (error) {
+        return KASORRA_DEMO_USERS;
+    }
+}
+
+/** Shows a single login error message below the form. */
+function showLoginError(form, message) {
+    let error_container = form.querySelector(".error_container") || document.createElement('div');
+    error_container.className = "error_container";
+    error_container.setAttribute("role", "alert");
+    error_container.textContent = message;
+    form.appendChild(error_container);
+}
+
+/** Disables the submit button while credential validation is running. */
+function setLoginLoading(button, isLoading) {
+    if (!button) return;
+    button.disabled = isLoading;
+    button.textContent = isLoading ? "Signing in..." : "Sign In";
+}
+
+/** Reflects the authenticated state in the header account button. */
+function updateAccountButton() {
+    const button = document.querySelector(".account-button");
+    if (!button) return;
+
+    const user = getCurrentUser();
+    const label = user ? "Dashboard" : "Account";
+    const icon = button.querySelector(".account-icon");
+    button.textContent = "";
+    if (icon) button.appendChild(icon);
+    button.appendChild(document.createTextNode(label));
+
+    if (user) {
+        button.onclick = () => {
+            window.location.href = "dashboard.html";
+        };
+    }
+}
+
+/** Reads the current logged-in user from browser storage. */
+function getCurrentUser() {
+    try {
+        return JSON.parse(localStorage.getItem(KASORRA_AUTH_KEYS.currentUser));
+    } catch (error) {
+        return null;
+    }
 }
 
 function close_overlay() {
@@ -261,6 +425,7 @@ function signUp_overlay(){
     bg.appendChild(container);
 
     document.body.appendChild(bg);
+    document.body.classList.add("no-scroll");
 }
 
 function buyer_option(replaceable_container) {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Kasorra Search Results</title>
+</head>
+<body>
+    <header class="utility-header">
+        <a href="index.html" class="nav-all">Home</a>
+        <nav class="utility-nav" aria-label="Search navigation">
+            <a href="index.html#marketplace-app">Categories</a>
+            <a href="index.html?supplier=techsource-pro#supplierProfile">Company Profile</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="cart-page.html">Cart</a>
+        </nav>
+    </header>
+
+    <main class="results-page">
+        <section class="module-heading">
+            <div>
+                <p class="section-eyebrow">Search results</p>
+                <h1 id="searchTitle">Product results</h1>
+            </div>
+            <form class="results-search" id="resultsSearchForm">
+                <input id="resultsSearchInput" type="search" placeholder="Search products or categories" aria-label="Search products or categories">
+                <button type="submit" class="primary-action">Search</button>
+            </form>
+        </section>
+
+        <section class="product-results result-list" id="searchResults" aria-live="polite"></section>
+    </main>
+
+    <script src="scripts/marketplace-data.js"></script>
+    <script src="scripts/search-results.js"></script>
+</body>
+</html>

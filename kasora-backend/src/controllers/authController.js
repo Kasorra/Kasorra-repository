@@ -8,6 +8,11 @@ const supabase = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+const authClient = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
 const registerValidations = [
     body('email')
         .isEmail().withMessage('Email must be valid')
@@ -24,6 +29,14 @@ const registerValidations = [
         .isString()
         .isLength({ max: 100 }).withMessage('Business name too long (max 100 chars)')
         .trim()
+];
+
+const loginValidations = [
+    body('email')
+        .trim()
+        .notEmpty().withMessage('Email or username is required'),
+    body('password')
+        .notEmpty().withMessage('Password is required')
 ];
 
 const validate = (req, res, next) => {
@@ -91,6 +104,41 @@ const register = async (req, res) => {
     }
 };
 
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const { data, error: authError } = await authClient.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (authError || !data.user || !data.session) {
+            return res.status(401).json(errors.unauthorized('Incorrect email or password'));
+        }
+
+        const result = await db.query(
+            'SELECT id, email, role, is_verified, verification_status FROM users WHERE supabase_uid = $1',
+            [data.user.id]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json(errors.notFound('User not found in system'));
+        }
+
+        res.json({
+            success: true,
+            message: 'Login successful',
+            token: data.session.access_token,
+            session: data.session,
+            user: result.rows[0]
+        });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json(errors.server('Login failed', error.message));
+    }
+};
+
 const getMe = async (req, res) => {
     try {
         const result = await db.query(
@@ -126,4 +174,4 @@ const getMe = async (req, res) => {
     }
 };
 
-module.exports = { register, getMe, registerValidations, validate };
+module.exports = { register, login, getMe, registerValidations, loginValidations, validate };

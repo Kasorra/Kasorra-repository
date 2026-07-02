@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Kasorra Dashboard</title>
+</head>
+<body>
+    <header class="utility-header">
+        <a href="index.html" class="nav-all">Home</a>
+        <nav class="utility-nav" aria-label="Dashboard navigation">
+            <a href="index.html#marketplace-app">Categories</a>
+            <a href="cart-page.html">Cart</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-page">
+        <section class="dashboard-hero">
+            <p class="section-eyebrow">Dashboard</p>
+            <h1 id="dashboardTitle">Kasorra account</h1>
+            <p id="dashboardSubtitle">Review marketplace activity and continue sourcing.</p>
+            <button type="button" class="secondary-action" id="logoutButton">Sign out</button>
+        </section>
+
+        <section class="dashboard-grid" id="dashboardCards" aria-live="polite"></section>
+    </main>
+
+    <script src="scripts/dashboard.js"></script>
+</body>
+</html>

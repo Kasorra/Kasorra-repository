@@ -15,6 +15,7 @@
     moqMax: "",
     priceMin: "",
     priceMax: "",
+    supplierVerification: "all",
     activeSupplierId: seed.suppliers[0].id,
     activeProductId: seed.products[0].id,
     products: loadStoredArray(STORAGE_KEYS.products),
@@ -30,6 +31,7 @@
     wireHeaderSearch();
     renderMarketplaceShell();
     renderAll();
+    applyRouteState();
   }
 
   /** Reads an array from localStorage and falls back to an empty list on invalid data. */
@@ -131,13 +133,11 @@
     });
   }
 
-  /** Applies a search query, clears conflicting category filters, and scrolls to the result area. */
+  /** Sends header searches to the dedicated search results page. */
   function applySearch(value) {
-    state.query = value.trim();
-    state.categoryId = "all";
-    state.subcategory = "all";
-    renderAll();
-    document.querySelector("#marketplace-app")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const query = value.trim();
+    if (!query) return;
+    window.location.href = `search-results.html?q=${encodeURIComponent(query)}`;
   }
 
   /** Builds the static shell that later render functions fill with state-aware content. */
@@ -171,6 +171,13 @@
           </label>
           <label>Maximum MOQ
             <input id="filterMoq" type="number" min="1" placeholder="Any">
+          </label>
+          <label>Supplier verification
+            <select id="filterSupplierVerification">
+              <option value="all">All suppliers</option>
+              <option value="verified">Verified only</option>
+              <option value="unverified">Unverified only</option>
+            </select>
           </label>
           <div class="range-row">
             <label>Min price
@@ -231,6 +238,7 @@
       moqMax: document.querySelector("#filterMoq"),
       priceMin: document.querySelector("#filterPriceMin"),
       priceMax: document.querySelector("#filterPriceMax"),
+      supplierVerification: document.querySelector("#filterSupplierVerification"),
     };
 
     Object.entries(controls).forEach(([key, element]) => {
@@ -259,6 +267,7 @@
     state.moqMax = "";
     state.priceMin = "";
     state.priceMax = "";
+    state.supplierVerification = "all";
     const headerInput = document.querySelector(".bar");
     if (headerInput) headerInput.value = "";
     renderAll();
@@ -295,6 +304,11 @@
     setInputValue("#filterMoq", state.moqMax);
     setInputValue("#filterPriceMin", state.priceMin);
     setInputValue("#filterPriceMax", state.priceMax);
+    setSelect("#filterSupplierVerification", `
+      <option value="all">All suppliers</option>
+      <option value="verified">Verified only</option>
+      <option value="unverified">Unverified only</option>
+    `, state.supplierVerification);
   }
 
   /** Updates a select element without losing its intended value. */
@@ -318,7 +332,7 @@
     if (!stats) return;
     stats.innerHTML = `
       <span>${products.length} products</span>
-      <span>${seed.suppliers.length} verified suppliers</span>
+      <span>${seed.suppliers.filter((supplier) => supplier.verified).length} verified suppliers</span>
       <span>${seed.categories.length} categories</span>
       <span>${state.inquiries.length} RFQs logged</span>
     `;
@@ -384,6 +398,8 @@
       if (state.categoryId !== "all" && !product.categories.includes(state.categoryId)) return false;
       if (state.subcategory !== "all" && product.subcategory !== state.subcategory) return false;
       if (state.location !== "all" && supplier.location !== state.location) return false;
+      if (state.supplierVerification === "verified" && !supplier.verified) return false;
+      if (state.supplierVerification === "unverified" && supplier.verified) return false;
       if (state.moqMax && product.moq > maxMoq) return false;
       if (state.priceMin && product.price < minPrice) return false;
       if (state.priceMax && product.price > maxPrice) return false;
@@ -929,6 +945,33 @@
     else cart.push({ productId, quantity: 1, addedAt: new Date().toISOString() });
     saveState(STORAGE_KEYS.cart, cart);
     showToast("Product added to cart.");
+  }
+
+  /** Applies product, supplier, category, or query URL parameters after the first render. */
+  function applyRouteState() {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+    const query = params.get("q");
+    const supplierId = params.get("supplier");
+    const productId = params.get("product");
+
+    if (category && categoryById(category)) state.categoryId = category;
+    if (query) state.query = query;
+    if (supplierId && seed.suppliers.some((supplier) => supplier.id === supplierId)) state.activeSupplierId = supplierId;
+    if (productId && allProducts().some((product) => product.id === productId)) state.activeProductId = productId;
+
+    if (category || query || supplierId || productId) {
+      renderAll();
+      document.querySelector("#marketplace-app")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if (supplierId) {
+      document.querySelector("#supplierProfile")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if (productId) {
+      openProductModal(productId);
+    }
   }
 
   /** Opens a modal and binds close controls. */
