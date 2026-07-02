@@ -1,5 +1,3 @@
-const { createElement } = require("react");
-
 function acc_button() {
     if (document.querySelector(".acc_bg")) {
         return;
@@ -140,16 +138,16 @@ function handle_login(event) {
     const password = form.password.value;
 
     if (email.trim() === "" || password.trim() === "") {
-        let error_container = document.createElement('div');
+        let error_container = form.querySelector(".error_container") || document.createElement('div');
         error_container.className = "error_container";
 
         let error_message = document.createElement('p');
         error_message.textContent = "Please Fill in all the fields."
+        error_container.innerHTML = "";
+        error_container.appendChild(error_message);
+        form.appendChild(error_container);
         return;
     }
-
-    error_container.appendChild(error_message);
-    form.appendChild(error_container);
 
     // Here you’d send data to backend/database
     console.log("Sending:", { email, password });
